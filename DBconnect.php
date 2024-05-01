@@ -1,7 +1,7 @@
 <?php
     class DBconnect {
         private $server = 'localhost';
-        private $dbname = 'reactcrud';
+        private $dbname = 'realestate';
         private $user = 'root';
         private $pass = '';
 

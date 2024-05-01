@@ -19,7 +19,7 @@ if ($post === 'POST' && isset($user->email)) {
 
     if (mysqli_num_rows($result) > 0) {
         while ($a = mysqli_fetch_array($result)) {
-            $response = array("status" => 1, "message" => 'Authentication succeed', "username" => $a['email']);
+            $response = array("status" => 1, "message" => 'Authentication succeed', "username" => $a['email'], 'id'=>$a['id']);
         }
     } else {
         $response = array("status" => 0, "message" => 'Authentication failed');
