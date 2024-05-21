@@ -24,7 +24,7 @@ $noithat = $c->noithat;
 $nguoiduoclienhe = $c->nguoiduoclienhe;
 $sodienthoai = $c->sodienthoai;
 $email = $c->email;
-
+$loaiTin = $c->loaiTin;
 $idBDSResult = mysqli_query($con, 
     "SELECT id FROM `batdongsan` WHERE dientich = '$dientich' AND donvi = '$donvi' AND giaytophaply = '$giaytophaply' AND noithat = '$noithat'");
 $idLHResult = mysqli_query($con, "SELECT id FROM `lienhe` WHERE nguoiduoclienhe = '$nguoiduoclienhe' AND sodienthoai = '$sodienthoai' AND email = '$email'");
@@ -36,8 +36,8 @@ if ($idBDSResult && $idLHResult) {
     $idBDS = $idBDSRow['id'];
     $idLH = $idLHRow['id'];
 
-    $sql = "INSERT INTO `posts` (`tieude`, `mota`, `idnguoidang`, `idbatdongsan`, `idlienhe`) 
-            VALUES ('$tieude', '$mota', '$idnguoidang', '$idBDS', '$idLH')";
+    $sql = "INSERT INTO `posts` (`tieude`, `mota`, `loaitin`,`idnguoidang`, `idbatdongsan`, `idlienhe`) 
+            VALUES ('$tieude', '$mota', '$loaiTin', '$idnguoidang', '$idBDS', '$idLH')";
     $res = mysqli_query($con, $sql);
 
     if ($res) {

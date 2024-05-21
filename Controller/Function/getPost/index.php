@@ -11,14 +11,17 @@
     // mysqli_query($con, "set names utf8");
     $post = $_SERVER['REQUEST_METHOD'];
     $content = json_decode(file_get_contents('php://input'));
-
-    $sql = "SELECT `posts`.id as id, tieude, mota, dientich, giatri, donvi, sophongngu,sotang, 
+    // $id = $content->id;
+    $id = $_REQUEST['id'];
+    $sql = "SELECT `posts`.id as id, idnguoidang,`user`.`email` as emailnguoidang,`user`.`name` as nguoidang,mobile, tieude, mota, dientich, giatri, donvi, sophongngu,sotang, 
             giaytophaply, noithat, ngaydang, name, `lienhe`.email as email, sodienthoai, nguoiduoclienhe, 
             anh1, anh2, anh3, anh4, latitude, longitude FROM `posts` 
             INNER JOIN `batdongsan` ON `posts`.`idbatdongsan`=`batdongsan`.`id` 
             INNER JOIN `user` ON `posts`.`idnguoidang` = `user`.`id` 
             INNER JOIN `lienhe` ON `posts`.`idlienhe` = `lienhe`.`id` 
-            INNER JOIN `danhsachhinhanh` ON `batdongsan`.idhinhanh = `danhsachhinhanh`.id;";
+            INNER JOIN `danhsachhinhanh` ON `batdongsan`.idhinhanh = `danhsachhinhanh`.id
+            WHERE `posts`.id = $id
+            ;";
     $results = mysqli_query($con, $sql);
     $arr = array();
     if (mysqli_num_rows($results)>0) {
@@ -26,6 +29,10 @@
         while($a=mysqli_fetch_array($results)){
             $arr[] = array(
                 "id"=>$a['id'], 
+                "idnguoidang"=>$a['idnguoidang'], 
+                "emailnguoidang"=>$a['emailnguoidang'], 
+                "nguoidang"=>$a['nguoidang'], 
+                "mobile"=>$a['mobile'], 
                 "tieude"=>$a['tieude'], 
                 "mota"=>$a['mota'], 
                 "dientich"=>$a['dientich'], 

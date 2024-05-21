@@ -11,16 +11,19 @@
     // mysqli_query($con, "set names utf8");
     $post = $_SERVER['REQUEST_METHOD'];
     $content = json_decode(file_get_contents('php://input'));
-
+    $address = $_REQUEST['q'];
     $sql = "SELECT `posts`.id as id, tieude, mota, dientich, giatri, donvi, sophongngu,sotang, 
-            giaytophaply, noithat, ngaydang, name, `lienhe`.email as email, sodienthoai, nguoiduoclienhe, 
+            giaytophaply, noithat, ngaydang, name, diachi, `lienhe`.email as email, sodienthoai, nguoiduoclienhe, 
             anh1, anh2, anh3, anh4, latitude, longitude FROM `posts` 
             INNER JOIN `batdongsan` ON `posts`.`idbatdongsan`=`batdongsan`.`id` 
             INNER JOIN `user` ON `posts`.`idnguoidang` = `user`.`id` 
             INNER JOIN `lienhe` ON `posts`.`idlienhe` = `lienhe`.`id` 
-            INNER JOIN `danhsachhinhanh` ON `batdongsan`.idhinhanh = `danhsachhinhanh`.id;";
+            INNER JOIN `danhsachhinhanh` ON `batdongsan`.idhinhanh = `danhsachhinhanh`.id
+            WHERE `batdongsan`.`diachi` like '%$address%'
+            ";
     $results = mysqli_query($con, $sql);
     $arr = array();
+    // var_dump($sql);
     if (mysqli_num_rows($results)>0) {
         # code...
         while($a=mysqli_fetch_array($results)){
@@ -37,6 +40,7 @@
                 "noithat"=>$a['noithat'], 
                 "ngaydang"=>$a['ngaydang'], 
                 "name"=>$a['name'], 
+                "diachi"=>$a['diachi'], 
                 "email"=>$a['email'], 
                 "sodienthoai"=>$a['sodienthoai'], 
                 "nguoiduoclienhe"=>$a['nguoiduoclienhe'], 

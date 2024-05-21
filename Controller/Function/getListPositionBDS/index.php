@@ -31,24 +31,18 @@
                 "dientich"=>$a['dientich'], 
                 "giatri"=>$a['giatri'], 
                 "donvi"=>$a['donvi'], 
-                "sophongngu"=>$a['sophongngu'],
+                "sophongngu"=>$a['sophongngu'], 
                 "sotang"=>$a['sotang'], 
                 "giaytophaply"=>$a['giaytophaply'], 
                 "noithat"=>$a['noithat'], 
-                "ngaydang"=>$a['ngaydang'], 
-                "name"=>$a['name'], 
-                "email"=>$a['email'], 
-                "sodienthoai"=>$a['sodienthoai'], 
-                "nguoiduoclienhe"=>$a['nguoiduoclienhe'], 
-                // 'idhinhanh'=>$a['idhinhanh'],
-                'anh1'=>$a['anh1'],
-                'anh2'=>$a['anh2'],
-                'anh3'=>$a['anh3'],
-                'anh4'=>$a['anh4'],
+                'ngaydang'=>$a['ngaydang'],
+                'name'=>$a['name'],
+                'email'=>$a['email'],
+                'sodienthoai'=>$a['sodienthoai'],
+                'nguoiduoclienhe'=>$a['nguoiduoclienhe'],
                 'latitude'=>$a['latitude'],
                 'longitude'=>$a['longitude'],
             );
-            // $arr[] = $a;
         }
         echo json_encode($arr);
         // header("Content-Type: application/json");

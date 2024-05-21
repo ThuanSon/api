@@ -13,9 +13,9 @@ $post = $_SERVER['REQUEST_METHOD'];
 $c = json_decode(file_get_contents('php://input'));
 
 // Extracting data from the JSON payload
-$lienhe = $c->tenlienhe;
-$sodienthoai = $c->sodienthoai;
-$email = $c->email;
+$lienhe = $c->tenlienhe ?? "";
+$sodienthoai = $c->sodienthoai ?? "";
+$email = $c->email ?? "";
 
 // Constructing SQL query
 $sql = "INSERT INTO `lienhe` (`id`, `nguoiduoclienhe`, `sodienthoai`, `email`) VALUES (NULL, '$lienhe', '$sodienthoai', '$email');";
